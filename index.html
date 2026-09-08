@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>🌿 용두암 생태탐험</title>
+
+
+    <!-- 우리가 만든 디자인 -->
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+
+    <!-- Leaflet 지도 -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+    <!-- ========================= -->
+    <!-- 상단 -->
+    <!-- ========================= -->
+
+    <header class="header">
+
+        <div class="title-area">
+
+            <div class="title-icon">
+                🌿
+            </div>
+
+            <div>
+
+                <h1>
+                    용두암 생태탐험
+                </h1>
+
+                <p>
+                    걸으며 발견하는 용두암의 식물
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="progress-box">
+
+            <span>
+                나의 식물 도감
+            </span>
+
+            <strong id="collection-count">
+                0 / 0
+            </strong>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ========================= -->
+    <!-- 메인 -->
+    <!-- ========================= -->
+
+    <main>
+
+
+        <!-- 지도 -->
+
+        <section class="map-section">
+
+            <div id="map"></div>
+
+
+            <div class="map-info">
+
+                <span id="location-status">
+                    탐험을 시작해주세요.
+                </span>
+
+            </div>
+
+
+            <button
+                id="start-button"
+                class="main-button"
+                onclick="startExploration()"
+            >
+
+                📍 탐험 시작
+
+            </button>
+
+        </section>
+
+
+
+        <!-- ========================= -->
+        <!-- 발견 알림 -->
+        <!-- ========================= -->
+
+        <section
+            id="discovery-panel"
+            class="discovery-panel hidden"
+        >
+
+            <div class="discovery-icon">
+                🌱
+            </div>
+
+            <p class="discovery-small">
+                새로운 식물을 발견했습니다!
+            </p>
+
+            <h2 id="discovered-plant-name">
+                식물 이름
+            </h2>
+
+            <p id="discovered-plant-description">
+                설명
+            </p>
+
+
+            <button
+                class="main-button"
+                onclick="collectCurrentPlant()"
+            >
+
+                📖 도감에 등록하기
+
+            </button>
+
+
+            <button
+                class="photo-button"
+                onclick="openCamera()"
+            >
+
+                📸 사진 찍기
+
+            </button>
+
+
+            <input
+                id="camera-input"
+                type="file"
+                accept="image/*"
+                capture="environment"
+                hidden
+            >
+
+        </section>
+
+
+
+        <!-- ========================= -->
+        <!-- 도감 -->
+        <!-- ========================= -->
+
+        <section class="collection-section">
+
+            <div class="section-title">
+
+                <div>
+
+                    <h2>
+                        📖 나의 식물 도감
+                    </h2>
+
+                    <p>
+                        발견한 식물을 눌러 자세히 확인하세요.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="collection"
+                class="collection-grid"
+            >
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ========================= -->
+    <!-- 식물 상세 카드 -->
+    <!-- ========================= -->
+
+    <div
+        id="plant-modal"
+        class="modal hidden"
+    >
+
+        <div class="modal-background"
+             onclick="closePlantModal()">
+        </div>
+
+
+        <div class="modal-card">
+
+
+            <button
+                class="close-button"
+                onclick="closePlantModal()"
+            >
+
+                ×
+
+            </button>
+
+
+            <img
+                id="modal-image"
+                src=""
+                alt="식물 사진"
+                class="modal-image"
+            >
+
+
+            <div class="modal-content">
+
+                <div
+                    id="modal-status"
+                    class="modal-status"
+                >
+                    🌱 발견 완료
+                </div>
+
+
+                <h2 id="modal-name">
+                    식물 이름
+                </h2>
+
+
+                <p
+                    id="modal-description"
+                    class="modal-description"
+                >
+                    식물 설명
+                </p>
+
+
+                <div class="modal-info">
+
+                    <div>
+                        📍 용두암 생태탐방로
+                    </div>
+
+                    <div id="modal-discovery">
+                        🌱 발견 완료
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<!-- ========================= -->
+<!-- Leaflet -->
+<!-- ========================= -->
+
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+></script>
+
+
+<!-- ========================= -->
+<!-- 우리가 만드는 JavaScript -->
+<!-- ========================= -->
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
