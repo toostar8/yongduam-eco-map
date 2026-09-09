@@ -135,7 +135,7 @@ let accuracyCircle = null;
 
 let locationWatcher = null;
 
-
+let testPlantCreated = false;
 
 // 현재 발견 대상으로 선택된 식물
 
@@ -384,6 +384,21 @@ function updateUserLocation(
 
     const accuracy =
         position.coords.accuracy;
+    // 테스트용 식물을 현재 GPS 위치에 배치
+    if (!testPlantCreated) {
+
+    plants[2].latitude = latitude;
+    plants[2].longitude = longitude;
+    plants[2].radius = 30;
+
+    testPlantCreated = true;
+
+    console.log(
+        "🌱 테스트 식물 위치 설정 완료!",
+        latitude,
+        longitude
+    );
+}
 
 
 
